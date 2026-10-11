@@ -373,6 +373,26 @@ body.dark .btn-primary:hover {
   align-self: flex-start;
 }
 
+.card .card-subtitle,
+.card .card-tech {
+  flex-grow: 0;
+  font-size: 0.875rem;
+}
+
+.card .card-subtitle {
+  margin-top: -0.25rem;
+}
+
+.card-tech {
+  font-weight: 600;
+}
+
+.card-note {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 /* Repo cards */
 .repo-card h3 a {
   color: var(--text);
