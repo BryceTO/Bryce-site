@@ -5,6 +5,21 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  var themeToggle = document.getElementById("theme-toggle");
+
+  function syncThemeToggle() {
+    var dark = document.body.classList.contains("dark");
+    themeToggle.textContent = dark ? "Light mode" : "Dark mode";
+  }
+
+  themeToggle.addEventListener("click", function () {
+    var dark = document.body.classList.toggle("dark");
+    try { sessionStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
+    syncThemeToggle();
+  });
+
+  syncThemeToggle();
+
   var list = document.getElementById("repo-list");
 
   function showMessage(text) {
