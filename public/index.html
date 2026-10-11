@@ -8,16 +8,28 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <script>
+    // Apply the theme before first paint: session choice first, else the OS preference.
+    (function () {
+      var saved = null;
+      try { saved = sessionStorage.getItem("theme"); } catch (e) {}
+      var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (dark) document.body.classList.add("dark");
+    })();
+  </script>
   <header class="site-header">
     <nav class="container nav" aria-label="Main">
       <a class="nav-brand" href="#hero">Bryce Teoh</a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#repos">Repos</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-end">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#repos">Repos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark mode</button>
+      </div>
     </nav>
   </header>
 

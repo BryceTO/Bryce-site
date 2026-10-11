@@ -15,21 +15,19 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #111418;
-    --bg-alt: #171b20;
-    --surface: #1c2127;
-    --text: #e8eaed;
-    --text-muted: #a0a7b2;
-    --border: #2c323a;
-    --accent: #6ea8fe;
-    --accent-hover: #9cc3ff;
-    --accent-soft: #1d2a3d;
-    --shadow: none;
-    --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.35);
-    color-scheme: dark;
-  }
+body.dark {
+  --bg: #111418;
+  --bg-alt: #171b20;
+  --surface: #1c2127;
+  --text: #e8eaed;
+  --text-muted: #a0a7b2;
+  --border: #2c323a;
+  --accent: #6ea8fe;
+  --accent-hover: #9cc3ff;
+  --accent-soft: #1d2a3d;
+  --shadow: none;
+  --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
 }
 
 *,
@@ -156,6 +154,34 @@ ul {
   text-decoration: none;
 }
 
+.nav-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+
+.theme-toggle {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 /* Hero */
 .hero {
   padding-block: clamp(4rem, 10vw, 7.5rem);
@@ -219,11 +245,9 @@ ul {
   color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  .btn-primary,
-  .btn-primary:hover {
-    color: #0b1220;
-  }
+body.dark .btn-primary,
+body.dark .btn-primary:hover {
+  color: #0b1220;
 }
 
 /* Sections */
