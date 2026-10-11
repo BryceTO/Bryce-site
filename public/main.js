@@ -1,0 +1,64 @@
+(function () {
+  "use strict";
+
+  var REPOS_URL = "https://api.github.com/users/BryceTO/repos?sort=updated&per_page=12";
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  var list = document.getElementById("repo-list");
+
+  function showMessage(text) {
+    list.replaceChildren();
+    var p = document.createElement("p");
+    p.className = "status-message";
+    p.textContent = text;
+    list.appendChild(p);
+  }
+
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text != null) node.textContent = text;
+    return node;
+  }
+
+  function repoCard(repo) {
+    var card = el("article", "card repo-card");
+
+    var title = el("h3");
+    var titleLink = el("a", null, repo.name);
+    titleLink.href = repo.html_url;
+    titleLink.target = "_blank";
+    titleLink.rel = "noopener";
+    title.appendChild(titleLink);
+    card.appendChild(title);
+
+    card.appendChild(el("p", null, repo.description || "No description provided."));
+
+    var meta = el("div", "repo-meta");
+    if (repo.language) meta.appendChild(el("span", "repo-lang", repo.language));
+    var stars = repo.stargazers_count;
+    meta.appendChild(el("span", null, "★ " + stars + (stars === 1 ? " star" : " stars")));
+    card.appendChild(meta);
+
+    return card;
+  }
+
+  fetch(REPOS_URL, { headers: { Accept: "application/vnd.github+json" } })
+    .then(function (res) {
+      if (!res.ok) throw new Error("GitHub API responded " + res.status);
+      return res.json();
+    })
+    .then(function (repos) {
+      var visible = repos.filter(function (r) { return !r.fork; });
+      if (!visible.length) visible = repos;
+      if (!visible.length) {
+        showMessage("No public repositories to show yet.");
+        return;
+      }
+      list.replaceChildren.apply(list, visible.map(repoCard));
+    })
+    .catch(function () {
+      showMessage("Couldn't load repositories right now. See them on GitHub: github.com/BryceTO");
+    });
+})();
