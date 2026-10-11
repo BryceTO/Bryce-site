@@ -182,6 +182,39 @@ ul {
   outline-offset: 3px;
 }
 
+/* Back to top */
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  z-index: 20;
+  padding: 0.55rem 0.95rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-hover);
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.back-to-top:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+body.dark .back-to-top {
+  color: #0b1220;
+}
+
 /* Hero */
 .hero {
   padding-block: clamp(4rem, 10vw, 7.5rem);
