@@ -20,6 +20,21 @@
 
   syncThemeToggle();
 
+  var backToTop = document.getElementById("back-to-top");
+  var hero = document.getElementById("hero");
+
+  // Show the button only once the hero has scrolled fully above the viewport.
+  new IntersectionObserver(function (entries) {
+    var entry = entries[0];
+    backToTop.hidden = entry.isIntersecting || entry.boundingClientRect.bottom > 0;
+  }).observe(hero);
+
+  backToTop.addEventListener("click", function () {
+    // Scroll behaviour (smooth, or instant with reduced motion) comes from the CSS on <html>.
+    window.scrollTo({ top: 0 });
+    document.querySelector(".nav-brand").focus({ preventScroll: true });
+  });
+
   var list = document.getElementById("repo-list");
 
   function showMessage(text) {
