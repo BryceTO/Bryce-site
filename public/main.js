@@ -3,6 +3,12 @@
 
   var REPOS_URL = "https://api.github.com/users/BryceTO/repos?sort=updated&per_page=12";
 
+  // Repositories to leave out of #repos. Add more names here (matched case-insensitively).
+  var HIDDEN_REPOS = [
+    "project_shoku",
+    "ICT2216-SSD-2401073-PracTest"
+  ];
+
   document.getElementById("year").textContent = new Date().getFullYear();
 
   var themeToggle = document.getElementById("theme-toggle");
@@ -80,6 +86,8 @@
       return res.json();
     })
     .then(function (repos) {
+      var hidden = HIDDEN_REPOS.map(function (name) { return name.toLowerCase(); });
+      repos = repos.filter(function (r) { return hidden.indexOf(r.name.toLowerCase()) === -1; });
       var visible = repos.filter(function (r) { return !r.fork; });
       if (!visible.length) visible = repos;
       if (!visible.length) {
