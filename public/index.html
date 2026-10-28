@@ -25,6 +25,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#process">Process</a></li>
           <li><a href="#repos">Repos</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -136,7 +137,31 @@
       </div>
     </section>
 
-    <section id="repos" class="section section-alt">
+    <section id="process" class="section section-alt">
+      <div class="container">
+        <h2>How I built this</h2>
+        <div class="process-text">
+          <p>This site was built and shipped with AI coding agents, with me as the reviewer and final gate.</p>
+          <ul class="process-list">
+            <li>A builder agent (Claude Code) works one GitHub Issue at a time on a branch and opens a pull request.</li>
+            <li>A separate checker agent writes Playwright end-to-end tests from a written specification only. It never sees the site's code, so tests check what was asked, not what was built.</li>
+            <li>Every pull request runs those tests in GitHub Actions. A pull request cannot merge until they pass and I have reviewed it.</li>
+            <li>Merging to main deploys the site to GitHub Pages automatically.</li>
+          </ul>
+        </div>
+        <ol class="flow" aria-label="Workflow from issue to deploy">
+          <li class="flow-step">Issue</li>
+          <li class="flow-step">Builder agent</li>
+          <li class="flow-step">Pull request</li>
+          <li class="flow-step">Checker's tests</li>
+          <li class="flow-step">My review</li>
+          <li class="flow-step">Merge</li>
+          <li class="flow-step">Deploy</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="repos" class="section">
       <div class="container">
         <h2>GitHub Repositories</h2>
         <p class="section-intro">Recently updated public repositories, pulled live from GitHub.</p>
@@ -146,7 +171,7 @@
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section section-alt">
       <div class="container narrow">
         <h2>Contact</h2>
         <p>I'm open to internship and graduate software engineering roles. The best way to reach me is by email.</p>

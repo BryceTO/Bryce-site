@@ -4,5 +4,5 @@ Deploy: push to main, GitHub Actions publishes to GitHub Pages.
 
 ## Conventions
 - Site files live in public/.
-- Section ids: #hero #about #skills #projects #repos #contact.
+- Section ids: #hero #about #skills #projects #process #repos #contact.
 - Keep it responsive; no horizontal scroll at 375px.
